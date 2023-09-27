@@ -1,32 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use App\Models\ToDo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Inertia\Inertia;
-use Inertia\Response;
 
-class toDosController extends Controller
-
+class ToDoController extends Controller
 {
     public function index()
     {
-        $todolists = Todolist::all();
+        $todos = ToDo::all();
 
-        return view('todolists.index', compact('todolists'));
+        return Inertia::render('ToDo/Index', [
+            'todos' => $todos,
+        ]);
     }
 
     public function create()
     {
-        return view('todolists.create');
+        return Inertia::render('ToDo/Create');
     }
 
     public function store(Request $request)
@@ -35,35 +29,36 @@ class toDosController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $todolist = new Todolist;
-        $todolist->name = $request->name;
-        $todolist->save();
+        $todo = new ToDo;
+        $todo->name = $request->name;
+        $todo->save();
 
-        return redirect()->route('todolists.index');
+        return redirect()->route('todos.index');
     }
 
-    public function edit(Todolist $todolist)
+    public function edit(ToDo $todo)
     {
-        return view('todolists.edit', compact('todolist'));
+        return Inertia::render('ToDo/Edit', [
+            'todo' => $todo,
+        ]);
     }
 
-    public function update(Request $request, Todolist $todolist)
+    public function update(Request $request, ToDo $todo)
     {
         $request->validate([
             'name' => 'required|max:255',
         ]);
 
-        $todolist->name = $request->name;
-        $todolist->save();
+        $todo->name = $request->name;
+        $todo->save();
 
-        return redirect()->route('todolists.index');
+        return redirect()->route('todos.index');
     }
 
-    public function destroy(Todolist $todolist)
+    public function destroy(ToDo $todo)
     {
-        $todolist->delete();
+        $todo->delete();
 
-        return redirect()->route('todolists.index');
+        return redirect()->route('todos.index');
     }
 }
-
