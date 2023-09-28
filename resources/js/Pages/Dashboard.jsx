@@ -5,7 +5,7 @@ import TodoModal from '@/Components/modal-form/modal-form';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RenderCards from '@/Components/render-cards/render-cards';
-import './dashboard.css'
+
 export default function Dashboard({ auth }) {
     const [show, setShow] = useState(false);
 

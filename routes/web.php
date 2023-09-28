@@ -35,7 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+Route::delete('/delete/{id}', [ToDosController::class, 'delete'])->name('delete');
 Route::post('/saveToDo', [ToDosController::class, 'saveToDo'])->name('saveToDo'); 
 Route::get('/index', [ToDosController::class, 'index'])->name('index'); 
 require __DIR__.'/auth.php';

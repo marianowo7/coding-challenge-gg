@@ -50,10 +50,10 @@ class ToDosController extends Controller
         return redirect()->route('todos.index');
     }
 
-    public function destroy(ToDo $todo)
+    public function delete($id)
     {
+        $todo = ToDo::find($id);
         $todo->delete();
-
-        return redirect()->route('todos.index');
+        return response()->json(['message' => 'Tarea eliminada con éxito']);
     }
 }
