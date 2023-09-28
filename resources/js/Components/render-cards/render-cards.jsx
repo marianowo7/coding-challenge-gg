@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import './render-cards.css'
 function RenderCards(newCard) {
     const [cards, setCards] = useState({
         cards: null,
@@ -32,9 +32,17 @@ function RenderCards(newCard) {
             return <div>Loading...</div>
         } else {
             return cardsData.map((card) => (
-                <div className='cards'>
-                    <div>{card.name}</div>
-                    <div>{card.description}</div>
+                <div className="cards">
+                    <div className='card-data'>
+                        <div>{card.name}</div>
+                        <div>{card.description}</div>
+                    </div>
+                    <div className='buttons'>
+                        <button>Done</button>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </div>
+                    
                 </div>
                 
             ));
@@ -42,7 +50,7 @@ function RenderCards(newCard) {
     }
     
     return (
-        <div>
+        <div className='cards-container'>
             {renderStateCards()}
         </div>
     );

@@ -5,7 +5,7 @@ import TodoModal from '@/Components/modal-form/modal-form';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RenderCards from '@/Components/render-cards/render-cards';
-
+import './dashboard.css'
 export default function Dashboard({ auth }) {
     const [show, setShow] = useState(false);
 
@@ -21,12 +21,11 @@ export default function Dashboard({ auth }) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <Button variant="primary" onClick={handleShow}> New To Do</Button>
+                        <Button variant="primary" onClick={handleShow}> New To Do</Button>
                     </div>
-                </div>
-                <div>
                     <RenderCards></RenderCards>
                 </div>
+                
             </div>
             <TodoModal show={show} handleClose={handleClose}></TodoModal>
             
