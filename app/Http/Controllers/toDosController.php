@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\auth;
+namespace App\Http\Controllers;
 
 use App\Models\ToDo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
-class ToDoController extends Controller
+class ToDosController extends Controller
 {
     public function index()
     {
@@ -20,20 +20,17 @@ class ToDoController extends Controller
 
     public function create()
     {
-        return Inertia::render('ToDo/Create');
+        return response()->json(['message' => 'Tarea creada con éxito']);
     }
 
-    public function store(Request $request)
+    public function saveToDo(Request $request)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-        ]);
-
         $todo = new ToDo;
-        $todo->name = $request->name;
+        $todo->name = $request->input('name');
+        $todo->description = $request->input('description');
         $todo->save();
 
-        return redirect()->route('todos.index');
+        return response()->json(['message' => 'Tarea creada con éxito']);
     }
 
     public function edit(ToDo $todo)

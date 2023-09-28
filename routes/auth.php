@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\Auth\toDosController;
+use App\Http\Controllers\toDosController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -35,6 +35,7 @@ Route::middleware('guest')->group(function () {
                 ->name('password.store');
 });
 
+
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
                 ->name('verification.notice');
@@ -56,6 +57,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+    Route::post('/saveToDo', [ToDosController::class, 'saveToDo'])->name('saveToDo');
+    Route::post('/create', [ToDosController::class, 'create'])->name('create');
+    Route::post('/index', [ToDosController::class, 'index'])->name('index');
 
- 
 });
