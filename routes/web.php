@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\toDosController;
+use App\Http\Controllers\toDosController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -37,4 +37,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::post('/saveToDo', [ToDosController::class, 'saveToDo'])->name('saveToDo'); 
+Route::get('/index', [ToDosController::class, 'index'])->name('index'); 
 require __DIR__.'/auth.php';

@@ -4,6 +4,7 @@ import { Head } from '@inertiajs/react';
 import TodoModal from '@/Components/modal-form/modal-form';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import RenderCards from '@/Components/render-cards/render-cards';
 
 export default function Dashboard({ auth }) {
     const [show, setShow] = useState(false);
@@ -23,8 +24,12 @@ export default function Dashboard({ auth }) {
                     <Button variant="primary" onClick={handleShow}> New To Do</Button>
                     </div>
                 </div>
+                <div>
+                    <RenderCards></RenderCards>
+                </div>
             </div>
             <TodoModal show={show} handleClose={handleClose}></TodoModal>
+            
         </AuthenticatedLayout>
     );
 }

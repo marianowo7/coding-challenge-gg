@@ -57,8 +57,4 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
-    Route::post('/saveToDo', [ToDosController::class, 'saveToDo'])->name('saveToDo');
-    Route::post('/create', [ToDosController::class, 'create'])->name('create');
-    Route::post('/index', [ToDosController::class, 'index'])->name('index');
-
 });

@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import RenderCards from '../render-cards/render-cards';
 
 function TodoModal({ show, handleClose }) {
   const [formData, setFormData] = useState({
@@ -28,11 +29,16 @@ function TodoModal({ show, handleClose }) {
     })
     .then((response) => {
       handleClose();
+      renderNewCard()
     })
     .catch((error) => {
       console.error('Error al enviar el formulario:', error);
     });
   };
+  function renderNewCard() {
+    <RenderCards newCard={true}></RenderCards>
+  }
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>

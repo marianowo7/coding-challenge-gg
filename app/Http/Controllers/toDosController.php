@@ -13,9 +13,7 @@ class ToDosController extends Controller
     {
         $todos = ToDo::all();
 
-        return Inertia::render('ToDo/Index', [
-            'todos' => $todos,
-        ]);
+        return response()->json($todos);
     }
 
     public function create()
