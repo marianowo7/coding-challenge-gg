@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import RenderCards from '../render-cards/render-cards';
 
-function TodoModal({ show, handleClose, method, url, updateCard }) {
+function TodoModal({ show, handleClose, method, url, updateCard, modalTitle }) {
   const [formData, setFormData] = useState({
     name: '',
     description: '', 
@@ -47,7 +47,7 @@ function TodoModal({ show, handleClose, method, url, updateCard }) {
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>New todo</Modal.Title>
+          <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>

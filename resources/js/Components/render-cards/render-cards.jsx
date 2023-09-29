@@ -99,7 +99,7 @@ function RenderCards(newCard) {
     return (
         <div className='cards-container'>
             {renderStateCards()}
-            <TodoModal show={show} handleClose={handleClose} url={id.id} method='patch' updateCard={true}></TodoModal>
+            <TodoModal show={show} handleClose={handleClose} url={id.id} method='patch' updateCard={true} modalTitle='Update Todo'></TodoModal>
         </div>
         
     );
