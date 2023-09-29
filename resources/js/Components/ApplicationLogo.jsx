@@ -1,5 +1,5 @@
 export default function ApplicationLogo() {
     return (
-        <div>"logo"</div>
+        <div>Go Back</div>
     );
 }
