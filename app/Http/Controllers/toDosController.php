@@ -11,8 +11,8 @@ class ToDosController extends Controller
 {
     public function index()
     {
-        $todos = ToDo::all();
-
+        $user = auth()->user();
+        $todos = ToDo::where('user_id', $user->id)->get();
         return response()->json($todos);
     }
 
@@ -23,9 +23,12 @@ class ToDosController extends Controller
 
     public function saveToDo(Request $request)
     {
+        $user = auth()->user();
+        
         $todo = new ToDo;
         $todo->name = $request->input('name');
         $todo->description = $request->input('description');
+        $todo->user_id = $user->id;
         $todo->save();
 
         return response()->json(['message' => 'todo created successfully']);

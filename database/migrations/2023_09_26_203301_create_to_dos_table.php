@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->boolean('confirmed')->nullable();
             $table->timestamps();
+            $table->foreignId('user_id')->references('id')->on('users');
         });
     }
 

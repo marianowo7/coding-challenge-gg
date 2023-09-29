@@ -23,10 +23,10 @@ function RenderCards(newCard) {
                     const data = await response.json();
                     setCards({ cards: data });
                 } else {
-                    console.error('Error al obtener las cards');
+                    console.error('Error');
                 }
             } catch (error) {
-                console.error('Error en la solicitud:', error);
+                console.error('Error', error);
             }
         }
         if (newCard) {
@@ -58,16 +58,16 @@ function RenderCards(newCard) {
                             const data = await response.json();
                             setCards({ cards: data });
                         } else {
-                            console.error('Error al obtener las cards');
+                            console.error('Error');
                         }
                     } catch (error) {
-                        console.error('Error en la solicitud:', error);
+                        console.error('Error', error);
                     }
                 } else {
-                    console.error('Error al eliminar la tarjeta');
+                    console.error('Error');
                 }
             } catch (error) {
-                console.error('Error en la solicitud:', error);
+                console.error('Error', error);
             }
         }
         deleteCard();
