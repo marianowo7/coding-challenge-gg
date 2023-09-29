@@ -82,12 +82,12 @@ function RenderCards(newCard) {
             return cardsData.map((card) => (
                 <div className="cards">
                     <div className='card-data'>
-                        <div>{card.name}</div>
-                        <div>{card.description}</div>
+                        <div className='card-title'>{card.name}</div>
+                        <div className='card-description'>{card.description}</div>
                     </div>
                     <div className='buttons'>
-                        <button onClick={() => UpdateToDo(card.id)}>Edit</button>
-                        <button onClick={() => DeleteCard(`/delete/${card.id}`)}>Delete</button>
+                        <button className='update-button' onClick={() => UpdateToDo(card.id)}>Edit</button>
+                        <button className='delete-button' onClick={() => DeleteCard(`/delete/${card.id}`)}>Delete</button>
                     </div>
                     
                 </div>
