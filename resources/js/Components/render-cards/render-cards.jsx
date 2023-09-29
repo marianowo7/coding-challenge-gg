@@ -86,7 +86,6 @@ function RenderCards(newCard) {
                         <div>{card.description}</div>
                     </div>
                     <div className='buttons'>
-                        <button>Done</button>
                         <button onClick={() => UpdateToDo(card.id)}>Edit</button>
                         <button onClick={() => DeleteCard(`/delete/${card.id}`)}>Delete</button>
                     </div>
