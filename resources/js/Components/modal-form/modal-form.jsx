@@ -5,11 +5,12 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import RenderCards from '../render-cards/render-cards';
 
-function TodoModal({ show, handleClose }) {
+function TodoModal({ show, handleClose, method, url, updateCard }) {
   const [formData, setFormData] = useState({
     name: '',
     description: '', 
   });
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,8 +21,8 @@ function TodoModal({ show, handleClose }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('/saveToDo', formData, {
+    e.preventDefault(); 
+    axios[method](url, formData, {
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -29,7 +30,10 @@ function TodoModal({ show, handleClose }) {
     })
     .then((response) => {
       handleClose();
-      renderNewCard()
+      renderNewCard();
+      if (updateCard) {
+        location.reload()
+      }
     })
     .catch((error) => {
       console.error('Error al enviar el formulario:', error);

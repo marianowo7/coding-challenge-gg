@@ -1,10 +1,19 @@
 import { useState, useEffect } from 'react';
+import TodoModal from '../modal-form/modal-form';
 import './render-cards.css'
 
 function RenderCards(newCard) {
     const [cards, setCards] = useState({
         cards: null,
     });
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [id, setId] = useState({
+        id: null,
+    })
+
+    const [update, setUpdate] = useState(false)
 
     useEffect(() => {
         async function getCards() {
@@ -25,10 +34,16 @@ function RenderCards(newCard) {
         }
     }, [newCard]); 
 
-    function DeleteCard(id) {
+    function UpdateToDo(id) {
+        handleShow()
+        const data = JSON.stringify(id)
+        setId({ id : "/updateToDo/" + data})
+    }
+    
+    function DeleteCard(url) {
         async function deleteCard() {
             try {
-                const response = await fetch(`${window.location.origin}/delete/${id}`, {
+                const response = await fetch(`${window.location.origin}`+url, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -39,6 +54,7 @@ function RenderCards(newCard) {
                     try {
                         const response = await fetch(`${window.location.origin}/index`);
                         if (response.ok) {
+                            setCards({ cards: null });
                             const data = await response.json();
                             setCards({ cards: data });
                         } else {
@@ -54,10 +70,9 @@ function RenderCards(newCard) {
                 console.error('Error en la solicitud:', error);
             }
         }
-    
-        // Llama a la función deleteCard para eliminar la tarjeta
         deleteCard();
     }
+
     
     function renderStateCards() {
         const cardsData = cards.cards
@@ -72,8 +87,8 @@ function RenderCards(newCard) {
                     </div>
                     <div className='buttons'>
                         <button>Done</button>
-                        <button>Edit</button>
-                        <button onClick= {() => DeleteCard(card.id)}>Delete</button>
+                        <button onClick={() => UpdateToDo(card.id)}>Edit</button>
+                        <button onClick={() => DeleteCard(`/delete/${card.id}`)}>Delete</button>
                     </div>
                     
                 </div>
@@ -85,7 +100,9 @@ function RenderCards(newCard) {
     return (
         <div className='cards-container'>
             {renderStateCards()}
+            <TodoModal show={show} handleClose={handleClose} url={id.id} method='patch' updateCard={true}></TodoModal>
         </div>
+        
     );
 }
 

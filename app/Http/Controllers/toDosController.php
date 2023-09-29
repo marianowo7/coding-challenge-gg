@@ -18,7 +18,7 @@ class ToDosController extends Controller
 
     public function create()
     {
-        return response()->json(['message' => 'Tarea creada con éxito']);
+        return response()->json(['message' => 'todo created successfully']);
     }
 
     public function saveToDo(Request $request)
@@ -28,7 +28,7 @@ class ToDosController extends Controller
         $todo->description = $request->input('description');
         $todo->save();
 
-        return response()->json(['message' => 'Tarea creada con éxito']);
+        return response()->json(['message' => 'todo created successfully']);
     }
 
     public function edit(ToDo $todo)
@@ -38,22 +38,20 @@ class ToDosController extends Controller
         ]);
     }
 
-    public function update(Request $request, ToDo $todo)
+    public function updateToDo(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-        ]);
-
+        $todo = ToDo::find($id);
         $todo->name = $request->name;
+        $todo->description = $request->description;
         $todo->save();
 
-        return redirect()->route('todos.index');
+        return response()->json($todo);
     }
 
     public function delete($id)
     {
         $todo = ToDo::find($id);
         $todo->delete();
-        return response()->json(['message' => 'Tarea eliminada con éxito']);
+        return response()->json(['message' => 'To-do deleted successfully']);
     }
 }

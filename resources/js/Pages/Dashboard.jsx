@@ -27,8 +27,7 @@ export default function Dashboard({ auth }) {
                 </div>
                 
             </div>
-            <TodoModal show={show} handleClose={handleClose}></TodoModal>
-            
+            <TodoModal show={show} handleClose={handleClose} url='/saveToDo' method='post'></TodoModal>
         </AuthenticatedLayout>
     );
 }
