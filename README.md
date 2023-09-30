@@ -24,6 +24,21 @@ Composer, the PHP dependency manager, should also be installed.
 3. Start React Development Server:
     Open another console and run: npm run dev
     This command compiles and bundles the React code. Ensure that the Laravel server is still running.
+-----------------------------------------------------------------------------
+* User Registration:
+    1.  Access the Registration Page:
+
+            Open your web browser and navigate to the URL provided by php artisan serve. You should find a registration link.
+
+            Complete Registration Form:
+
+            Enter a username, email address, password, and confirm the password.
+            Submit the form to register.
+            Now you have access the app
+
+    2.  Login:
+
+        If you have a user, navigate to the login page, enter your credentials, and log in to access the CRUD application.
 
 Now, you should be able to interact with the Laravel and React CRUD application. The Laravel server handles backend logic, while React manages the frontend. Make sure to follow these steps whenever you want to run the project locally.
 
