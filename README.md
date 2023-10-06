@@ -14,14 +14,16 @@ Composer, the PHP dependency manager, should also be installed.
     composer update
 
 -----------------------------------------------------------------------------
+2. Use "php artisan migrate:refresh" to migrate tables
+-----------------------------------------------------------------------------
 
-2. Running the Project:
+3. Running the Project:
 
 * Start Laravel Server:
     Run the following command in one console: php artisan serve
     Now access the provided URL in your browser.
 
-3. Start React Development Server:
+4. Start React Development Server:
     Open another console and run: npm run dev
     This command compiles and bundles the React code. Ensure that the Laravel server is still running.
 -----------------------------------------------------------------------------
